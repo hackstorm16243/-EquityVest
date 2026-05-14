@@ -1,0 +1,291 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EquityVest</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(90deg,#6d28d9,#22c55e);
+}
+
+#startPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #22c55e;
+  color: white;
+  font-weight: bold;
+}
+
+.container {
+  display: none;
+}
+
+.sidebar {
+  width: 200px;
+  background: #111827;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+}
+
+.sidebar button {
+  width: 100%;
+  background: transparent;
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+}
+
+.content {
+  margin-left: 210px;
+  padding: 20px;
+}
+
+.card {
+  background: #1f2937;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 12px;
+}
+
+input, select {
+  padding: 8px;
+  margin: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>WELCOME TO EQUITYVEST</h1>
+<p>SYCET IGNITE HACKATHON 2026 | PROJECT BY HACKSTORM16243</p>
+</header>
+
+<!-- START PAGE -->
+<div id="startPage">
+  <h2>Start Your Financial Journey</h2>
+  <button onclick="start()">Start Journey</button>
+</div>
+
+<!-- APP -->
+<div class="container" id="app">
+
+  <div class="sidebar">
+    <button onclick="show('dashboard')">Market Dashboard</button>
+    <button onclick="show('foundation')">Foundation</button>
+    <button onclick="show('growth')">Growth</button>
+    <button onclick="show('retirement')">Retirement</button>
+    <button onclick="show('goal')">Goal Tracker</button>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+      <h2>Market Dashboard</h2>
+      <canvas id="dashChart"></canvas>
+    </div>
+
+    <!-- FOUNDATION -->
+    <div id="foundation" style="display:none">
+      <h2>Investment Simulator</h2>
+
+      <input id="amt" placeholder="Enter Amount">
+
+      <select id="type">
+        <option>Mutual Funds</option>
+        <option>Crypto</option>
+        <option>Gold</option>
+        <option>Fixed Deposit</option>
+      </select>
+
+      <button onclick="calcInvest()">Calculate</button>
+
+      <p id="invOut"></p>
+      <canvas id="invChart"></canvas>
+    </div>
+
+    <!-- GROWTH -->
+    <div id="growth" style="display:none">
+
+      <h2>EMI Calculator</h2>
+      <input id="loan" placeholder="Loan Amount">
+      <input id="rate" placeholder="Interest %">
+      <input id="years" placeholder="Years">
+      <button onclick="emiCalc()">Calculate EMI</button>
+      <p id="emiOut"></p>
+      <canvas id="emiChart"></canvas>
+
+      <h2>GST / Interest</h2>
+      <input id="gstAmt" placeholder="Amount">
+      <button onclick="gstCalc()">GST Calc</button>
+      <button onclick="interestCalc()">Interest Calc</button>
+      <p id="gstOut"></p>
+      <canvas id="gstChart"></canvas>
+
+    </div>
+
+    <!-- RETIREMENT -->
+    <div id="retirement" style="display:none">
+
+      <h2>Retirement Planner</h2>
+      <input id="save" placeholder="Monthly Savings">
+      <input id="ryears" placeholder="Years">
+      <button onclick="retCalc()">Calculate</button>
+      <p id="retOut"></p>
+      <canvas id="retChart"></canvas>
+
+    </div>
+
+    <!-- GOAL -->
+    <div id="goal" style="display:none">
+      <h2>Financial Goal Tracker</h2>
+      <input id="goalAmt" placeholder="Target Amount">
+      <input id="saveAmt" placeholder="Monthly Saving">
+      <button onclick="goalCalc()">Track Goal</button>
+      <p id="goalOut"></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+function start(){
+  document.getElementById("startPage").style.display="none";
+  document.getElementById("app").style.display="block";
+  show("dashboard");
+  dashGraph();
+}
+
+function show(id){
+  let sections=["dashboard","foundation","growth","retirement","goal"];
+  sections.forEach(s=>document.getElementById(s).style.display="none");
+  document.getElementById(id).style.display="block";
+}
+
+/* DASHBOARD */
+function dashGraph(){
+  new Chart(document.getElementById("dashChart"),{
+    type:'line',
+    data:{
+      labels:[1,2,3,4,5],
+      datasets:[{
+        label:"Market Trend",
+        data:[10,20,15,30,25],
+        borderColor:"green"
+      }]
+    }
+  });
+}
+
+/* INVESTMENT */
+function calcInvest(){
+  let amt=+document.getElementById("amt").value;
+  let type=document.getElementById("type").value;
+
+  let growth=amt*2.5;
+  document.getElementById("invOut").innerText="Expected: "+growth;
+
+  new Chart(document.getElementById("invChart"),{
+    type:'line',
+    data:{
+      labels:[1,2,3,4,5],
+      datasets:[{label:type,data:[amt,amt*1.2,amt*1.5,amt*2,amt*2.5],borderColor:"purple"}]
+    }
+  });
+}
+
+/* EMI */
+function emiCalc(){
+  let p=+document.getElementById("loan").value;
+  let r=+document.getElementById("rate").value/12/100;
+  let n=+document.getElementById("years").value*12;
+
+  let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  document.getElementById("emiOut").innerText="EMI: "+emi.toFixed(2);
+
+  let data=[];
+  for(let i=0;i<12;i++) data.push(p-(i*emi*10));
+
+  new Chart(document.getElementById("emiChart"),{
+    type:'line',
+    data:{labels:[1,2,3,4,5,6,7,8,9,10,11,12],
+    datasets:[{label:"Loan Drop",data:data,borderColor:"red"}]}
+  });
+}
+
+/* GST */
+function gstCalc(){
+  let a=+document.getElementById("gstAmt").value;
+  let gst=a*0.18;
+  document.getElementById("gstOut").innerText="GST: "+gst;
+
+  new Chart(document.getElementById("gstChart"),{
+    type:'pie',
+    data:{
+      labels:["Amount","GST"],
+      datasets:[{data:[a,gst]}]
+    }
+  });
+}
+
+function interestCalc(){
+  let a=+document.getElementById("gstAmt").value;
+  let i=a*0.1;
+  document.getElementById("gstOut").innerText="Interest: "+i;
+}
+
+/* RETIREMENT */
+function retCalc(){
+  let s=+document.getElementById("save").value;
+  let y=+document.getElementById("ryears").value;
+
+  let total=s*y*12*1.2;
+  document.getElementById("retOut").innerText="Future Value: "+total;
+
+  new Chart(document.getElementById("retChart"),{
+    type:'line',
+    data:{labels:[1,2,3,4,5],
+    datasets:[{label:"Growth",data:[s,s*2,s*3,s*4,s*5],borderColor:"yellow"}]}
+  });
+}
+
+/* GOAL TRACKER */
+function goalCalc(){
+  let g=+document.getElementById("goalAmt").value;
+  let s=+document.getElementById("saveAmt").value;
+
+  let months=g/s;
+  document.getElementById("goalOut").innerText="Time needed: "+months+" months";
+}
+
+</script>
+
+</body>
+</html>  
