@@ -1,79 +1,112 @@
- EquityVest
+# 💰 EquityVest - Financial Simulation Platform
 
-AI-Powered Financial Survival & Growth Platform for Everyday Indians
+## 🏆 SYCET IGNITE HACKATHON 2026  
+**Project by:** HACKSTORM16243  
 
-EquityVest is a personalized AI-driven financial platform designed around real Indian life situations, financial struggles, survival needs, and long-term growth.
+---
 
-Unlike traditional finance apps that mainly focus on investing or high-income users, EquityVest aims to simplify financial decision-making for ordinary people navigating unstable income, debt pressure, loan confusion, financial scams, budgeting struggles, savings planning, and financial stress.
+## 📌 Project Overview
 
-The platform introduces the concept of Life Modes, where users receive personalized financial tools, guidance, insights, and recommendations based on their real-life situation.
+EquityVest is a web-based financial learning and simulation platform designed to help users understand real-world finance in an interactive way.
 
-Life Modes
+It simulates:
+- Investment growth
+- Loan EMI calculations
+- GST vs Interest comparison
+- Retirement planning
+- Financial goal tracking
+- Market dashboard visualization
 
-- Student / Youth
-- First Salary
-- Salaried Professional
-- Homemaker
-- Married / Family Mode
-- Self-Employed
-- Freelancer / Creator
-- Farmer / Kisan
-- Gig Worker
-- Retired / Pension
+The goal of this project is to make financial education simple, visual, and interactive.
 
-Platform Features
+---
 
-- AI Financial Guidance
-- Personalized Financial Dashboards
-- EMI Calculator
-- Loan Simplifier
-- Bank & Loan Comparison
-- Scam Shield
-- Financial Health Tracking
-- Savings Guidance
-- Emergency Financial Planning
-- Expense Tracking
-- Family Budget Planning
-- Debt Risk Analysis
-- Financial Survival Roadmaps
-- Insurance Guidance
-- Regional Language Support
-- Smart Financial Recommendations
-- Financial Awareness Tools
-- Goal Planning Systems
-- Personalized Insights
-- Banking Guidance
-- Budget Management Tools
-- Future Financial Planning
-- Life Situation-Based Financial Systems
+## 🚀 Features
 
-Problem We Solve
+### 📊 Market Dashboard
+- Live-style market trend graph simulation
+- Visual representation of financial movement
 
-India became financially digitized faster than financially educated.
+### 💰 Foundation Module (Investment Simulator)
+- Enter custom investment amount
+- Choose investment type:
+  - Mutual Funds
+  - Crypto
+  - Gold
+  - Fixed Deposit
+- Calculate expected returns
+- Risk vs return visualization
+- Growth line graph
 
-Millions of people still struggle to:
+---
 
-- understand financial products
-- compare loans and banks
-- avoid debt traps
-- manage unstable income
-- build emergency savings
-- identify scams
-- plan long-term finances
-- make safe financial decisions
+### 📈 Growth Module
 
-Most finance platforms focus on transactions and investments.
+#### EMI Calculator
+- Loan amount input
+- Interest rate input
+- Time duration input
+- EMI calculation
+- Loan repayment graph
 
-EquityVest focuses on financial understanding, survival, accessibility, and personalized financial empowerment for everyday Indians.
+#### GST Calculator
+- GST calculation
+- Pie chart visualization
+- Interest comparison mode
 
-Tech Stack
+---
 
-- Next.js
-- Tailwind CSS
-- Firebase
-- OpenAI API
-- Vercel
+### 🧓 Retirement Planner
+- Monthly savings input
+- Duration input
+- Future value estimation
+- Growth projection graph
 
-Vision
+---
 
-To build India’s most accessible AI-powered financial ecosystem personalized for every life situation, helping ordinary people make smarter financial decisions with clarity, confidence, and simplicity.
+### 🎯 Financial Goal Tracker
+- Set financial target
+- Monthly saving input
+- Time required estimation
+
+---
+
+## 🧠 Technologies Used
+- HTML5
+- CSS3
+- JavaScript
+- Chart.js (for graphs)
+
+---
+
+## 📂 How to Run
+
+### Option 1 (Local)
+1. Download project files
+2. Open `index.html` in any browser
+
+### Option 2 (GitHub Pages)
+1. Upload `index.html` to GitHub repository
+2. Go to Settings → Pages
+3. Select branch: `main`
+4. Click Save
+5. Open generated link
+
+---
+
+## ⚠️ Important Note
+- Internet connection is required for charts (Chart.js CDN)
+- Best viewed on desktop for full experience
+
+---
+
+## 🎯 Future Improvements
+- AI Financial Advisor chatbot
+- Real stock market API integration
+- User login system
+- Mobile responsive UI improvements
+
+---
+
+## 🏁 Conclusion
+EquityVest is designed to make financial education interactive, visual, and practical for real-world understanding.
